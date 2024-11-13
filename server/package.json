@@ -8,5 +8,9 @@
     "start": "node server.js"
   },
   "author": "james",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7"
+  }
 }
