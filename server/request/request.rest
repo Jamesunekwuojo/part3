@@ -3,6 +3,6 @@
 # GET http://localhost:3000/info
 
 
-GET http://localhost:3001/api/persons/3
+GET http://localhost:3001/api/persons/6
 
 

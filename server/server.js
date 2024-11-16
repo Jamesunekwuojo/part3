@@ -46,13 +46,13 @@ app.get('/api/persons/:id', (req, res) => {
 
   try {
 
-    // if(!person) {
-    //   console.log("person not found")
-    //   return res.status(404)
+    if(!person) {
+      console.log("person not found")
+      return res.status(404).json({message:"person is not found"})
 
-    // }
+    }
 
-    // console.log(person)
+    console.log(person)
      res.status(200).json(person)
      console.log(person)
    
