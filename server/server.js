@@ -37,7 +37,7 @@ app.get("/api/persons", (req, res) => {
 
 app.get('/info', (req, res) => {
   res.send(`Phonebook has info for ${persons.length} people. <br> ${new Date()} `)
-})
+});
 
 app.get('/api/persons/:id', (req, res) => {
   const id = req.params.id
@@ -62,7 +62,17 @@ app.get('/api/persons/:id', (req, res) => {
     res.status(500).json( "server internal error")
   }
 
-})
+});
+
+app.delete('/api/persons/:id', (req, res) => {
+  const id = req.params.id
+  persons = persons.filter(person => person.id !== id)
+
+  console.log(persons)
+  res.status(204).json(persons).end()
+
+
+});
 
 const PORT = 3001;
 
