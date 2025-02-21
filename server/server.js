@@ -27,6 +27,8 @@ let persons = [
   },
 ];
 
+
+
 app.get("/", (req, res) => {
   res.send("<h2>Hello world</h2>");
 });
@@ -73,6 +75,17 @@ app.delete('/api/persons/:id', (req, res) => {
 
 
 });
+
+
+app.get('/info', (req, res) => {
+  res.send(`Phonebook has info for ${persons.length} people. <br> ${new Date()} `)
+});
+
+app.get('/api/persons/:id', (req, res) => {
+
+  
+
+})
 
 const PORT = 3001;
 
