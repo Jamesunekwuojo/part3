@@ -2,19 +2,25 @@ const express = require("express");
 
 const morgan = require("morgan");
 
+const cors = require("cors");
 // custom token
 morgan.token("person", (req, res) => {
   const body = req.body;
   // return `{"name": "${body.name}", "Number": "${body.number}" }`;
 
-  JSON.stringify(body);
 
-  return `{"name": "${body.name}", "Number": "${body.number}" }`;
+
+  // return JSON.stringify(body.name);
+  
+
+  return `{"name": ${JSON.stringify(body.name)}, "Number": ${JSON.stringify(body.number)} }`;
 
 })
 
 
 const app = express();
+
+app.use(cors());
 
 app.use(morgan(":method :url :status :res[content-length] - :response-time ms :person"));
 
