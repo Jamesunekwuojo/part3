@@ -1,6 +1,18 @@
 const express = require("express");
 
+const morgan = require("morgan");
+
+// custom token
+morgan.token("person", (req, res) => {
+  const body = req.body;
+  return `{"name": "${body.name}", "Number": "${body.number}" }`;
+
+})
+
+
 const app = express();
+
+app.use(morgan(":method :url :status :res[content-length] - :response-time ms :person"));
 
 app.use(express.json());
 
