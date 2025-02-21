@@ -5,6 +5,10 @@ const morgan = require("morgan");
 // custom token
 morgan.token("person", (req, res) => {
   const body = req.body;
+  // return `{"name": "${body.name}", "Number": "${body.number}" }`;
+
+  JSON.stringify(body);
+
   return `{"name": "${body.name}", "Number": "${body.number}" }`;
 
 })
