@@ -3,6 +3,16 @@
 # GET http://localhost:3000/info
 
 
-DELETE http://localhost:3001/api/persons/2
+# DELETE http://localhost:3001/api/persons/2
+
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "id": 3,
+    "name": "",
+    "number": "040-123456"
+ 
+}
 
 

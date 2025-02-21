@@ -27,8 +27,6 @@ let persons = [
   },
 ];
 
-
-
 app.get("/", (req, res) => {
   res.send("<h2>Hello world</h2>");
 });
@@ -37,58 +35,62 @@ app.get("/api/persons", (req, res) => {
   res.json(persons);
 });
 
-app.get('/info', (req, res) => {
-  res.send(`Phonebook has info for ${persons.length} people. <br> ${new Date()} `)
+app.get("/info", (req, res) => {
+  res.send(
+    `Phonebook has info for ${persons.length} people. <br> ${new Date()} `
+  );
 });
 
-app.get('/api/persons/:id', (req, res) => {
-  const id = req.params.id
+app.get("/api/persons/:id", (req, res) => {
+  const id = req.params.id;
 
-  const person = persons.find(person => person.id === id )
+  const person = persons.find((person) => person.id === id);
 
   try {
-
-    if(!person) {
-      console.log("person not found")
-      return res.status(404).json({message:"person is not found"})
-
+    if (!person) {
+      console.log("person not found");
+      return res.status(404).json({ message: "person is not found" });
     }
 
-    console.log(person)
-     res.status(200).json(person)
-     console.log(person)
-   
-
+    console.log(person);
+    res.status(200).json(person);
+    console.log(person);
   } catch (error) {
-    console.log("Error fetching data", error.message)
-    res.status(500).json( "server internal error")
+    console.log("Error fetching data", error.message);
+    res.status(500).json("server internal error");
+  }
+});
+
+app.post("/api/persons", (req, res) => {
+  const body = req.body;
+
+  if (!body.name || !body.number) {
+    return res.status(400).json({ error: "name or number is missing" });
   }
 
+  const person = {
+    id: Math.floor(Math.random() * 1000),
+    name: body.name,
+    number: body.number,
+  };
+
+  persons = persons.concat(person);
+
+  res.json(person);
 });
 
-app.delete('/api/persons/:id', (req, res) => {
-  const id = req.params.id
-  persons = persons.filter(person => person.id !== id)
+app.delete("/api/persons/:id", (req, res) => {
+  const id = req.params.id;
+  persons = persons.filter((person) => person.id !== id);
 
-  console.log(persons)
-  res.status(204).json(persons).end()
-
-
+  console.log(persons);
+  res.status(204).json(persons).end();
 });
-
-
-app.get('/info', (req, res) => {
-  res.send(`Phonebook has info for ${persons.length} people. <br> ${new Date()} `)
-});
-
-app.get('/api/persons/:id', (req, res) => {
-
-  
-
-})
 
 const PORT = 3001;
 
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
 });
+
+// saintlyoracleproduction
